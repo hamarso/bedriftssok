@@ -313,14 +313,18 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Initialize session state
-if 'search_history' not in st.session_state:
-    st.session_state.search_history = []
-if 'current_results' not in st.session_state:
-    st.session_state.current_results = None
+def initialize_session_state():
+    """Initialize session state variables"""
+    if 'search_history' not in st.session_state:
+        st.session_state.search_history = []
+    if 'current_results' not in st.session_state:
+        st.session_state.current_results = None
 
 def clear_results():
     st.session_state.current_results = None
+
+# Initialize session state
+initialize_session_state()
 
 def get_county_from_postal(postal_code: str) -> str:
     """Map Norwegian postal code to county"""
